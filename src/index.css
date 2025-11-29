@@ -1,0 +1,320 @@
+:root {
+  --ios-blue: #007AFF;
+  --ios-green: #34C759;
+  --ios-red: #FF3B30;
+  --ios-orange: #FF9500;
+  --ios-yellow: #FFCC00;
+  --ios-pink: #FF2D55;
+  --ios-purple: #AF52DE;
+  --ios-teal: #5AC8FA;
+  --ios-gray: #8E8E93;
+  --ios-dark-gray: #48484A;
+  --ios-light-gray: #E5E5EA;
+  --ios-background: #000000;
+  --ios-text: #FFFFFF;
+  --ios-text-secondary: rgba(255, 255, 255, 0.6);
+  --status-bar-height: 44px;
+  --dock-height: 92px;
+  --app-icon-size: 60px;
+  --app-icon-radius: 13.5px;
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
+  --spacing-lg: 16px;
+  --spacing-xl: 20px;
+  --spacing-2xl: 24px;
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.15);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.25);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.3);
+  --blur-light: blur(20px);
+  --blur-heavy: blur(40px);
+  --transition-fast: 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.3s cubic-bezier(0.4, 0, 0.2, 1)
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box
+}
+
+*::before,
+*::after {
+  box-sizing: border-box
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--ios-text);
+  background: var(--ios-background);
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative
+}
+
+.app {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: #000000
+}
+
+.app__wallpaper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat
+}
+
+.app__wallpaper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 70% 80%, rgba(0, 0, 0, 0.2) 0%, transparent 50%);
+  pointer-events: none
+}
+
+.app__wallpaper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.3) 100%);
+  pointer-events: none
+}
+
+.app__content {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+  z-index: 1;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none
+}
+
+.app__content::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+  -webkit-tap-highlight-color: transparent
+}
+
+button:focus {
+  outline: none
+}
+
+button:focus-visible {
+  outline: 2px solid var(--ios-blue);
+  outline-offset: 2px
+}
+
+a {
+  color: var(--ios-blue);
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent
+}
+
+a:hover {
+  text-decoration: underline
+}
+
+a:focus {
+  outline: none
+}
+
+a:focus-visible {
+  outline: 2px solid var(--ios-blue);
+  outline-offset: 2px;
+  border-radius: 4px
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0
+}
+
+@media (max-width: 428px) {
+  html {
+    font-size: 15px
+  }
+}
+
+@media (max-width: 375px) {
+  html {
+    font-size: 14px
+  }
+}
+
+@media (min-width: 429px) {
+  .app {
+    max-width: 428px;
+    margin: 0 auto;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.5)
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ios-background: #000000;
+    --ios-text: #FFFFFF
+  }
+}
+
+@supports (padding: max(0px)) {
+  .app__content {
+    padding-bottom: max(var(--dock-height), env(safe-area-inset-bottom))
+  }
+}
+
+@supports (-webkit-touch-callout: none) {
+  body {
+    height: -webkit-fill-available
+  }
+  
+  .app {
+    height: -webkit-fill-available
+  }
+}
+
+.app__content {
+  overscroll-behavior: contain
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0
+  }
+  to {
+    opacity: 1
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0
+  }
+  to {
+    transform: scale(1);
+    opacity: 1
+  }
+}
+
+.app {
+  animation: fadeIn 0.3s ease-out
+}
+
+@media (hover: hover) and (pointer: fine) {
+  button:hover {
+    opacity: 0.8
+  }
+}
+
+.app__wallpaper {
+  will-change: transform
+}
+
+.app__content {
+  will-change: scroll-position
+}
+
+@supports (backdrop-filter: blur(20px)) {
+  .status-bar,
+  .dock__background {
+    backdrop-filter: var(--blur-light) saturate(180%);
+    -webkit-backdrop-filter: var(--blur-light) saturate(180%)
+  }
+}
+
+@supports not (backdrop-filter: blur(20px)) {
+  .status-bar {
+    background: rgba(0, 0, 0, 0.7)
+  }
+  
+  .dock__background {
+    background: rgba(255, 255, 255, 0.3)
+  }
+}
