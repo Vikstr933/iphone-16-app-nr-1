@@ -1,0 +1,208 @@
+.dock {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding: 0 8px 8px 8px;
+  pointer-events: none
+}
+
+.dock__container {
+  position: relative;
+  width: 100%;
+  max-width: 428px;
+  pointer-events: auto
+}
+
+.dock__background {
+  position: absolute;
+  bottom: 0;
+  left: 8px;
+  right: 8px;
+  height: 92px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  border-radius: 24px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
+              0 2px 8px rgba(0, 0, 0, 0.2),
+              inset 0 1px 0 rgba(255, 255, 255, 0.3),
+              inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2)
+}
+
+.dock__apps {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  padding: 16px 24px;
+  z-index: 1
+}
+
+.dock__app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1)
+}
+
+.dock__app:active,
+.dock__app--pressed {
+  transform: scale(0.88)
+}
+
+.dock__app:focus {
+  outline: none
+}
+
+.dock__app:focus-visible .dock__app-icon {
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.6),
+              0 8px 20px rgba(0, 0, 0, 0.35),
+              0 4px 8px rgba(0, 0, 0, 0.2),
+              inset 0 1px 0 rgba(255, 255, 255, 0.25)
+}
+
+.dock__app-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 13.5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3),
+              0 2px 6px rgba(0, 0, 0, 0.2),
+              inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.15s ease
+}
+
+.dock__app:hover .dock__app-icon {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35),
+              0 4px 8px rgba(0, 0, 0, 0.25),
+              inset 0 1px 0 rgba(255, 255, 255, 0.3)
+}
+
+.dock__app-emoji {
+  font-size: 36px;
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2))
+}
+
+.dock__app-shine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(180deg, 
+    rgba(255, 255, 255, 0.25) 0%, 
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0) 100%);
+  border-radius: 13.5px 13.5px 0 0;
+  pointer-events: none;
+  z-index: 1
+}
+
+@media (max-width: 428px) {
+  .dock__background {
+    left: 4px;
+    right: 4px
+  }
+
+  .dock__apps {
+    gap: 12px;
+    padding: 16px 20px
+  }
+}
+
+@media (max-width: 375px) {
+  .dock {
+    padding: 0 4px 8px 4px
+  }
+
+  .dock__background {
+    height: 88px;
+    border-radius: 22px
+  }
+
+  .dock__apps {
+    gap: 8px;
+    padding: 14px 16px
+  }
+
+  .dock__app-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 12.5px
+  }
+
+  .dock__app-emoji {
+    font-size: 32px
+  }
+}
+
+@media (min-width: 429px) {
+  .dock__apps {
+    gap: 20px;
+    padding: 18px 28px
+  }
+
+  .dock__app-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 14.5px
+  }
+
+  .dock__app-emoji {
+    font-size: 38px
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dock__app {
+    transition: none
+  }
+
+  .dock__app-icon {
+    transition: none
+  }
+}
+
+@supports not (backdrop-filter: blur(40px)) {
+  .dock__background {
+    background: rgba(255, 255, 255, 0.85)
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .dock__background {
+    background: rgba(50, 50, 55, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.15)
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .dock__app {
+    transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1)
+  }
+
+  .dock__app:hover {
+    transform: scale(1.05)
+  }
+
+  .dock__app:active {
+    transform: scale(0.92)
+  }
+}
