@@ -1,0 +1,215 @@
+.status-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 44px;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  z-index: 1000;
+  color: #FFFFFF;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.3px
+}
+
+.status-bar__left {
+  display: flex;
+  align-items: center;
+  flex: 1
+}
+
+.status-bar__time {
+  font-size: 15px;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3)
+}
+
+.status-bar__notch {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 160px;
+  height: 30px;
+  background: #000000;
+  border-radius: 0 0 20px 20px;
+  z-index: 1001
+}
+
+.status-bar__right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  justify-content: flex-end
+}
+
+.status-bar__signal {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 12px
+}
+
+.status-bar__signal-bar {
+  width: 3px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 1px;
+  transition: background-color 0.3s ease
+}
+
+.status-bar__signal-bar--active {
+  background: #FFFFFF
+}
+
+.status-bar__wifi {
+  display: flex;
+  align-items: flex-end;
+  gap: 1px;
+  height: 12px;
+  margin-left: 2px
+}
+
+.status-bar__wifi-bar {
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 1px;
+  transition: background-color 0.3s ease
+}
+
+.status-bar__wifi-bar--active {
+  background: #FFFFFF
+}
+
+.status-bar__battery {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: 4px
+}
+
+.status-bar__battery-container {
+  position: relative;
+  width: 24px;
+  height: 11px;
+  border: 1.5px solid #FFFFFF;
+  border-radius: 3px;
+  padding: 1px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2)
+}
+
+.status-bar__battery-level {
+  height: 100%;
+  border-radius: 1.5px;
+  transition: width 0.3s ease, background-color 0.3s ease;
+  position: relative
+}
+
+.status-bar__battery-charging {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 8px;
+  line-height: 1;
+  z-index: 1
+}
+
+.status-bar__battery-tip {
+  width: 2px;
+  height: 5px;
+  background: #FFFFFF;
+  border-radius: 0 2px 2px 0;
+  margin-left: 1px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2)
+}
+
+.status-bar__battery-percentage {
+  font-size: 13px;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3)
+}
+
+@media (max-width: 390px) {
+  .status-bar {
+    padding: 0 15px;
+    font-size: 14px
+  }
+
+  .status-bar__time {
+    font-size: 14px
+  }
+
+  .status-bar__notch {
+    width: 140px;
+    height: 28px
+  }
+
+  .status-bar__battery-percentage {
+    font-size: 12px
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  .status-bar {
+    background: rgba(255, 255, 255, 0.8);
+    color: #000000
+  }
+
+  .status-bar__time {
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3)
+  }
+
+  .status-bar__signal-bar {
+    background: rgba(0, 0, 0, 0.3)
+  }
+
+  .status-bar__signal-bar--active {
+    background: #000000
+  }
+
+  .status-bar__wifi-bar {
+    background: rgba(0, 0, 0, 0.3)
+  }
+
+  .status-bar__wifi-bar--active {
+    background: #000000
+  }
+
+  .status-bar__battery-container {
+    border-color: #000000
+  }
+
+  .status-bar__battery-tip {
+    background: #000000
+  }
+
+  .status-bar__battery-percentage {
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3)
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1
+  }
+  50% {
+    opacity: 0.6
+  }
+}
+
+.status-bar__battery-level {
+  animation: pulse 2s ease-in-out infinite
+}
+
+.status-bar__battery-container:has(.status-bar__battery-charging) .status-bar__battery-level {
+  animation: pulse 1.5s ease-in-out infinite
+}
