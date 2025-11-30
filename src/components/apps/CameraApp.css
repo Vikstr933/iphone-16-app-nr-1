@@ -1,0 +1,382 @@
+.camera-app {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #000000;
+  display: flex;
+  flex-direction: column;
+  z-index: 3000;
+  animation: cameraSlideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1)
+}
+
+@keyframes cameraSlideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1
+  }
+}
+
+.camera-app__viewfinder {
+  flex: 1;
+  position: relative;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center
+}
+
+.camera-app__gradient-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
+  pointer-events: none
+}
+
+.camera-app__grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none
+}
+
+.camera-app__grid-line {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.3)
+}
+
+.camera-app__grid-line--vertical {
+  width: 1px;
+  height: 100%;
+  top: 0
+}
+
+.camera-app__grid-line--horizontal {
+  height: 1px;
+  width: 100%;
+  left: 0
+}
+
+.camera-app__top-controls {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 52px 20px 20px 20px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, transparent 100%);
+  z-index: 10
+}
+
+.camera-app__control-button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: none;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease
+}
+
+.camera-app__control-button:active {
+  transform: scale(0.9);
+  background: rgba(0, 0, 0, 0.7)
+}
+
+.camera-app__control-button--active {
+  background: rgba(255, 204, 0, 0.8);
+  color: #000000
+}
+
+.camera-app__recording-indicator {
+  position: absolute;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: rgba(255, 59, 48, 0.9);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+  z-index: 10
+}
+
+.camera-app__recording-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  animation: recordingPulse 1.5s ease-in-out infinite
+}
+
+@keyframes recordingPulse {
+  0%, 100% {
+    opacity: 1
+  }
+  50% {
+    opacity: 0.3
+  }
+}
+
+.camera-app__recording-time {
+  color: #FFFFFF;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+  letter-spacing: 0.5px
+}
+
+.camera-app__zoom-controls {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 12px;
+  padding: 8px 12px;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+  z-index: 10
+}
+
+.camera-app__zoom-button {
+  min-width: 40px;
+  height: 32px;
+  padding: 0 12px;
+  border-radius: 16px;
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 15px;
+  font-weight: 600;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+  cursor: pointer;
+  transition: all 0.2s ease
+}
+
+.camera-app__zoom-button--active {
+  background: rgba(255, 255, 255, 0.2);
+  color: #FFFFFF
+}
+
+.camera-app__zoom-button:active {
+  transform: scale(0.95)
+}
+
+.camera-app__controls {
+  background: #000000;
+  padding: 20px 20px calc(20px + env(safe-area-inset-bottom)) 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px
+}
+
+.camera-app__mode-selector {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none
+}
+
+.camera-app__mode-selector::-webkit-scrollbar {
+  display: none
+}
+
+.camera-app__mode-button {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 13px;
+  font-weight: 600;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  padding: 8px 12px;
+  white-space: nowrap;
+  transition: all 0.2s ease
+}
+
+.camera-app__mode-button--active {
+  color: #FFCC00;
+  transform: scale(1.1)
+}
+
+.camera-app__mode-button:active {
+  opacity: 0.7
+}
+
+.camera-app__action-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px
+}
+
+.camera-app__gallery-button {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  background: none;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  padding: 0;
+  overflow: hidden;
+  transition: all 0.2s ease
+}
+
+.camera-app__gallery-button:active {
+  transform: scale(0.95);
+  border-color: rgba(255, 255, 255, 0.5)
+}
+
+.camera-app__gallery-thumbnail {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center
+}
+
+.camera-app__shutter-button {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  position: relative
+}
+
+.camera-app__shutter-button:active {
+  transform: scale(0.9)
+}
+
+.camera-app__shutter-button--flash {
+  animation: shutterFlash 0.2s ease
+}
+
+@keyframes shutterFlash {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.8)
+  }
+  50% {
+    box-shadow: 0 0 0 20px rgba(255, 255, 255, 0)
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0)
+  }
+}
+
+.camera-app__shutter-button--video {
+  background: rgba(255, 59, 48, 0.2);
+  border-color: #FF3B30
+}
+
+.camera-app__shutter-button--recording {
+  background: #FF3B30;
+  border-color: #FF3B30
+}
+
+.camera-app__shutter-inner {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  transition: all 0.2s ease
+}
+
+.camera-app__shutter-button--video .camera-app__shutter-inner {
+  background: #FF3B30
+}
+
+.camera-app__shutter-button--recording .camera-app__shutter-inner {
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  background: #FFFFFF
+}
+
+.camera-app__flip-button {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: none;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease
+}
+
+.camera-app__flip-button:active {
+  transform: scale(0.9) rotate(180deg);
+  background: rgba(0, 0, 0, 0.7)
+}
+
+@media (max-width: 375px) {
+  .camera-app__shutter-button {
+    width: 64px;
+    height: 64px
+  }
+
+  .camera-app__shutter-inner {
+    width: 50px;
+    height: 50px
+  }
+
+  .camera-app__gallery-button,
+  .camera-app__flip-button {
+    width: 44px;
+    height: 44px
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .camera-app,
+  .camera-app__recording-dot,
+  .camera-app__shutter-button--flash {
+    animation: none
+  }
+
+  .camera-app__control-button:active,
+  .camera-app__zoom-button:active,
+  .camera-app__shutter-button:active,
+  .camera-app__gallery-button:active,
+  .camera-app__flip-button:active {
+    transform: none
+  }
+}
