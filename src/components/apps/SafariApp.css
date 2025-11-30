@@ -1,0 +1,514 @@
+.safari-app {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  z-index: 3000;
+  animation: safariSlideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1)
+}
+
+@keyframes safariSlideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1
+  }
+}
+
+.safari-app__close {
+  position: fixed;
+  top: 52px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.1);
+  border: none;
+  color: #007AFF;
+  font-size: 20px;
+  font-weight: 300;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: background 0.2s ease
+}
+
+.safari-app__close:hover {
+  background: rgba(0, 0, 0, 0.15)
+}
+
+.safari-app__header {
+  position: relative;
+  padding: 52px 16px 8px 16px;
+  background: rgba(249, 249, 249, 0.94);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.1);
+  z-index: 10
+}
+
+.safari-app__toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-bottom: 12px
+}
+
+.safari-app__toolbar-button {
+  background: none;
+  border: none;
+  color: #007AFF;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s ease
+}
+
+.safari-app__toolbar-button:hover {
+  opacity: 0.7
+}
+
+.safari-app__toolbar-button--tabs {
+  position: relative
+}
+
+.safari-app__icon {
+  font-size: 22px;
+  line-height: 1
+}
+
+.safari-app__tabs-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px
+}
+
+.safari-app__tabs-icon-square {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #007AFF;
+  border-radius: 3px
+}
+
+.safari-app__tabs-count-badge {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  background: #007AFF;
+  color: white;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 1px 4px;
+  border-radius: 8px;
+  min-width: 16px;
+  text-align: center
+}
+
+.safari-app__address-bar {
+  background: rgba(142, 142, 147, 0.12);
+  border-radius: 10px;
+  padding: 8px 12px
+}
+
+.safari-app__address-bar-content {
+  display: flex;
+  align-items: center;
+  gap: 8px
+}
+
+.safari-app__lock-icon {
+  font-size: 14px;
+  color: #8E8E93
+}
+
+.safari-app__url-input {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  font-size: 15px;
+  color: #000000;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif
+}
+
+.safari-app__url-input::placeholder {
+  color: #8E8E93
+}
+
+.safari-app__refresh-button {
+  background: none;
+  border: none;
+  color: #007AFF;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center
+}
+
+.safari-app__content {
+  flex: 1;
+  overflow-y: auto;
+  background: #FFFFFF;
+  -webkit-overflow-scrolling: touch
+}
+
+.safari-app__webpage {
+  min-height: 100%;
+  padding-bottom: 60px
+}
+
+.safari-app__webpage-header {
+  text-align: center;
+  padding: 40px 20px 20px 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white
+}
+
+.safari-app__webpage-logo {
+  font-size: 64px;
+  margin-bottom: 16px
+}
+
+.safari-app__webpage-title {
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif
+}
+
+.safari-app__webpage-body {
+  padding: 0
+}
+
+.safari-app__hero {
+  text-align: center;
+  padding: 48px 24px;
+  background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%)
+}
+
+.safari-app__hero-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 16px 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif
+}
+
+.safari-app__hero-text {
+  font-size: 17px;
+  color: #666666;
+  line-height: 1.5;
+  margin: 0;
+  max-width: 500px;
+  margin: 0 auto
+}
+
+.safari-app__sections {
+  padding: 0 20px 40px 20px
+}
+
+.safari-app__section {
+  margin-bottom: 40px
+}
+
+.safari-app__section-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 20px 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif
+}
+
+.safari-app__cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 16px
+}
+
+.safari-app__card {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease
+}
+
+.safari-app__card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1)
+}
+
+.safari-app__card-icon {
+  font-size: 40px;
+  margin-bottom: 12px
+}
+
+.safari-app__card-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0 0 8px 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif
+}
+
+.safari-app__card-text {
+  font-size: 14px;
+  color: #666666;
+  margin: 0;
+  line-height: 1.4
+}
+
+.safari-app__content-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px
+}
+
+.safari-app__content-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  background: #f8f9fa;
+  border-radius: 12px;
+  transition: background 0.2s ease
+}
+
+.safari-app__content-item:hover {
+  background: #e9ecef
+}
+
+.safari-app__content-icon {
+  font-size: 32px;
+  flex-shrink: 0
+}
+
+.safari-app__content-info {
+  flex: 1
+}
+
+.safari-app__content-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0 0 4px 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif
+}
+
+.safari-app__content-description {
+  font-size: 14px;
+  color: #666666;
+  margin: 0
+}
+
+.safari-app__bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 12px 20px 24px 20px;
+  background: rgba(249, 249, 249, 0.94);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-top: 0.5px solid rgba(0, 0, 0, 0.1);
+  z-index: 10
+}
+
+.safari-app__bottom-button {
+  background: none;
+  border: none;
+  color: #007AFF;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s ease
+}
+
+.safari-app__bottom-button:hover {
+  opacity: 0.7
+}
+
+.safari-app__bottom-icon {
+  font-size: 22px;
+  line-height: 1
+}
+
+.safari-app__tabs-view {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: #F2F2F7;
+  overflow: hidden
+}
+
+.safari-app__tabs-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 52px 16px 16px 16px;
+  background: rgba(242, 242, 247, 0.94);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.1)
+}
+
+.safari-app__tabs-done {
+  background: none;
+  border: none;
+  color: #007AFF;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif
+}
+
+.safari-app__tabs-count {
+  font-size: 17px;
+  font-weight: 600;
+  color: #1a1a1a;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif
+}
+
+.safari-app__tabs-new {
+  background: none;
+  border: none;
+  color: #007AFF;
+  font-size: 32px;
+  font-weight: 300;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1
+}
+
+.safari-app__tabs-grid {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 16px;
+  align-content: start;
+  -webkit-overflow-scrolling: touch
+}
+
+.safari-app__tab-card {
+  background: #FFFFFF;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+  aspect-ratio: 3/4
+}
+
+.safari-app__tab-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15)
+}
+
+.safari-app__tab-card--active {
+  border: 2px solid #007AFF
+}
+
+.safari-app__tab-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.6);
+  border: none;
+  color: white;
+  font-size: 18px;
+  font-weight: 300;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  transition: background 0.2s ease
+}
+
+.safari-app__tab-close:hover {
+  background: rgba(0, 0, 0, 0.8)
+}
+
+.safari-app__tab-preview {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)
+}
+
+.safari-app__tab-favicon {
+  font-size: 48px;
+  margin-bottom: 12px
+}
+
+.safari-app__tab-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 4px;
+  text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif
+}
+
+.safari-app__tab-url {
+  font-size: 13px;
+  color: #666666;
+  text-align: center;
+  word-break: break-all
+}
+
+@media (max-width: 375px) {
+  .safari-app__tabs-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 12px;
+    padding: 16px
+  }
+
+  .safari-app__cards {
+    grid-template-columns: 1fr
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .safari-app,
+  .safari-app__tab-card,
+  .safari-app__card,
+  .safari-app__content-item {
+    animation: none;
+    transition: none
+  }
+}
