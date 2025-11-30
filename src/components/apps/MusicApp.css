@@ -1,0 +1,446 @@
+.music-app {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, #1C1C1E 0%, #2C2C2E 100%);
+  display: flex;
+  flex-direction: column;
+  z-index: 3000;
+  animation: musicSlideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden
+}
+
+@keyframes musicSlideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1
+  }
+}
+
+.music-app__close {
+  position: fixed;
+  top: 52px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #FFFFFF;
+  font-size: 18px;
+  font-weight: 300;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3)
+}
+
+.music-app__close:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: scale(1.05)
+}
+
+.music-app__content {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 52px 24px 20px 24px;
+  display: flex;
+  flex-direction: column
+}
+
+.music-app__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px
+}
+
+.music-app__minimize,
+.music-app__more {
+  background: none;
+  border: none;
+  color: #FF3B30;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 8px;
+  transition: opacity 0.2s ease
+}
+
+.music-app__minimize:hover,
+.music-app__more:hover {
+  opacity: 0.7
+}
+
+.music-app__chevron {
+  display: block;
+  font-size: 28px;
+  line-height: 1
+}
+
+.music-app__header-title {
+  text-align: center;
+  color: #FFFFFF
+}
+
+.music-app__playing-from {
+  font-size: 11px;
+  opacity: 0.6;
+  margin-bottom: 2px;
+  font-weight: 500;
+  letter-spacing: 0.5px
+}
+
+.music-app__source {
+  font-size: 13px;
+  font-weight: 600
+}
+
+.music-app__artwork-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 32px
+}
+
+.music-app__artwork {
+  width: 100%;
+  max-width: 340px;
+  aspect-ratio: 1;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%)
+}
+
+.music-app__artwork-inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #FF3B30 0%, #FF6B6B 50%, #FF9500 100%)
+}
+
+.music-app__cover-icon {
+  font-size: 120px;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3))
+}
+
+.music-app__info {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  gap: 16px
+}
+
+.music-app__song-info {
+  flex: 1;
+  min-width: 0
+}
+
+.music-app__title {
+  font-size: 22px;
+  font-weight: 600;
+  color: #FFFFFF;
+  margin: 0 0 4px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif
+}
+
+.music-app__artist {
+  font-size: 18px;
+  font-weight: 400;
+  color: #FF3B30;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis
+}
+
+.music-app__favorite {
+  background: none;
+  border: none;
+  color: #FF3B30;
+  font-size: 28px;
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.2s ease;
+  flex-shrink: 0
+}
+
+.music-app__favorite:hover {
+  transform: scale(1.1)
+}
+
+.music-app__progress-section {
+  margin-bottom: 24px
+}
+
+.music-app__progress-slider {
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  margin-bottom: 8px
+}
+
+.music-app__progress-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 0;
+  height: 0
+}
+
+.music-app__progress-slider::-moz-range-thumb {
+  width: 0;
+  height: 0;
+  border: none;
+  background: transparent
+}
+
+.music-app__time-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 400
+}
+
+.music-app__controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  padding: 0 8px
+}
+
+.music-app__control-button {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 24px;
+  cursor: pointer;
+  padding: 8px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center
+}
+
+.music-app__control-button:hover {
+  color: #FFFFFF;
+  transform: scale(1.05)
+}
+
+.music-app__control-button--active {
+  color: #FF3B30
+}
+
+.music-app__play-pause {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  border: none;
+  color: #1C1C1E;
+  font-size: 32px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: all 0.2s ease
+}
+
+.music-app__play-pause:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4)
+}
+
+.music-app__play-pause:active {
+  transform: scale(0.95)
+}
+
+.music-app__volume-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 32px
+}
+
+.music-app__volume-icon,
+.music-app__airplay {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 18px;
+  cursor: pointer;
+  padding: 8px;
+  transition: color 0.2s ease;
+  flex-shrink: 0
+}
+
+.music-app__volume-icon:hover,
+.music-app__airplay:hover {
+  color: #FFFFFF
+}
+
+.music-app__volume-slider {
+  flex: 1;
+  height: 4px;
+  border-radius: 2px;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer
+}
+
+.music-app__volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 0;
+  height: 0
+}
+
+.music-app__volume-slider::-moz-range-thumb {
+  width: 0;
+  height: 0;
+  border: none;
+  background: transparent
+}
+
+.music-app__queue {
+  border-top: 0.5px solid rgba(255, 255, 255, 0.1);
+  padding-top: 24px
+}
+
+.music-app__queue-header {
+  margin-bottom: 16px
+}
+
+.music-app__queue-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #FFFFFF;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif
+}
+
+.music-app__queue-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px
+}
+
+.music-app__queue-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px;
+  border-radius: 8px;
+  transition: background 0.2s ease;
+  cursor: pointer
+}
+
+.music-app__queue-item:hover {
+  background: rgba(255, 255, 255, 0.05)
+}
+
+.music-app__queue-cover {
+  width: 48px;
+  height: 48px;
+  border-radius: 4px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  flex-shrink: 0
+}
+
+.music-app__queue-info {
+  flex: 1;
+  min-width: 0
+}
+
+.music-app__queue-song {
+  font-size: 15px;
+  font-weight: 400;
+  color: #FFFFFF;
+  margin-bottom: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis
+}
+
+.music-app__queue-artist {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.6);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis
+}
+
+.music-app__queue-duration {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.6);
+  flex-shrink: 0
+}
+
+@media (max-width: 375px) {
+  .music-app__content {
+    padding: 52px 16px 20px 16px
+  }
+
+  .music-app__artwork {
+    max-width: 300px
+  }
+
+  .music-app__cover-icon {
+    font-size: 100px
+  }
+
+  .music-app__title {
+    font-size: 20px
+  }
+
+  .music-app__artist {
+    font-size: 16px
+  }
+
+  .music-app__play-pause {
+    width: 64px;
+    height: 64px;
+    font-size: 28px
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .music-app {
+    animation: none
+  }
+
+  .music-app__close,
+  .music-app__control-button,
+  .music-app__play-pause,
+  .music-app__favorite {
+    transition: none
+  }
+}
