@@ -1,39 +1,48 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import './AppIcon.css';
 import { AppIconProps } from '../types';
 
-const AppIcon: React.FC<AppIconProps> = ({ app, onClick }) => {
-  const [isPressed, setIsPressed] = useState(false);
+interface ExtendedAppIconProps extends Omit<AppIconProps, 'onClick'> {
+  onClick?: (iconElement: HTMLElement) => void;
+  isPressed?: boolean
+}
+
+const AppIcon: React.FC<ExtendedAppIconProps> = ({ app, onClick, isPressed = false }) => {
+  const [isLocalPressed, setIsLocalPressed] = useState(false);
+  const iconRef = useRef<HTMLDivElement>(null);
 
   const handleTouchStart = () => {
-    setIsPressed(true)
+    setIsLocalPressed(true)
   };
 
   const handleTouchEnd = () => {
-    setIsPressed(false);
-    if (onClick) {
-      onClick()
+    setIsLocalPressed(false);
+    if (onClick && iconRef.current) {
+      onClick(iconRef.current)
     }
   };
 
   const handleMouseDown = () => {
-    setIsPressed(true)
+    setIsLocalPressed(true)
   };
 
   const handleMouseUp = () => {
-    setIsPressed(false);
-    if (onClick) {
-      onClick()
+    setIsLocalPressed(false);
+    if (onClick && iconRef.current) {
+      onClick(iconRef.current)
     }
   };
 
   const handleMouseLeave = () => {
-    setIsPressed(false)
+    setIsLocalPressed(false)
   };
+
+  const isPressedState = isPressed || isLocalPressed;
 
   return (
     <div
-      className={`app-icon ${isPressed ? 'app-icon--pressed' : ''}`}
+      ref={iconRef}
+      className={`app-icon ${isPressedState ? 'app-icon--pressed' : ''}`}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
       onMouseDown={handleMouseDown}
@@ -42,6 +51,7 @@ const AppIcon: React.FC<AppIconProps> = ({ app, onClick }) => {
       role="button"
       tabIndex={0}
       aria-label={app.name}
+      data-app-id={app.id}
     >
       <div
         className="app-icon__container"
@@ -49,7 +59,7 @@ const AppIcon: React.FC<AppIconProps> = ({ app, onClick }) => {
           background: app.gradient || app.color
         }}
       >
-        <span className="app-icon__emoji" role="img" aria-hidden="true">
+        <span className="app-icon__emoji" role="img" aria-label={app.name}>
           {app.icon}
         </span>
       </div>
