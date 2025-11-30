@@ -1,0 +1,334 @@
+.weather-app {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, #4A90E2 0%, #7CB9E8 50%, #B0D9F1 100%);
+  display: flex;
+  flex-direction: column;
+  z-index: 3000;
+  animation: weatherSlideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden
+}
+
+@keyframes weatherSlideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1
+  }
+}
+
+.weather-app__close {
+  position: fixed;
+  top: 52px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: #FFFFFF;
+  font-size: 18px;
+  font-weight: 300;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1)
+}
+
+.weather-app__close:hover {
+  background: rgba(255, 255, 255, 0.4);
+  transform: scale(1.05)
+}
+
+.weather-app__content {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 52px 0 20px 0
+}
+
+.weather-app__header {
+  text-align: center;
+  padding: 40px 20px;
+  color: #FFFFFF;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1)
+}
+
+.weather-app__location {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 16px
+}
+
+.weather-app__location-icon {
+  font-size: 20px
+}
+
+.weather-app__location-name {
+  font-size: 32px;
+  font-weight: 300;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif
+}
+
+.weather-app__current-temp {
+  font-size: 96px;
+  font-weight: 200;
+  line-height: 1;
+  margin: 8px 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif
+}
+
+.weather-app__condition {
+  font-size: 20px;
+  font-weight: 400;
+  margin-bottom: 8px;
+  opacity: 0.95
+}
+
+.weather-app__high-low {
+  font-size: 18px;
+  font-weight: 400;
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  opacity: 0.9
+}
+
+.weather-app__sections {
+  padding: 0 16px 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px
+}
+
+.weather-app__section {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-radius: 16px;
+  padding: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1)
+}
+
+.weather-app__section-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  color: rgba(255, 255, 255, 0.8)
+}
+
+.weather-app__section-icon {
+  font-size: 14px
+}
+
+.weather-app__section-title {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif
+}
+
+.weather-app__hourly-scroll {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 8px 0;
+  scrollbar-width: none;
+  -ms-overflow-style: none
+}
+
+.weather-app__hourly-scroll::-webkit-scrollbar {
+  display: none
+}
+
+.weather-app__hourly-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  min-width: 60px;
+  color: #FFFFFF
+}
+
+.weather-app__hourly-time {
+  font-size: 14px;
+  font-weight: 500;
+  opacity: 0.9
+}
+
+.weather-app__hourly-icon {
+  font-size: 28px
+}
+
+.weather-app__hourly-temp {
+  font-size: 18px;
+  font-weight: 500
+}
+
+.weather-app__daily-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px
+}
+
+.weather-app__daily-item {
+  display: grid;
+  grid-template-columns: 80px 40px 40px 1fr;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.2);
+  color: #FFFFFF
+}
+
+.weather-app__daily-item:last-child {
+  border-bottom: none
+}
+
+.weather-app__daily-day {
+  font-size: 16px;
+  font-weight: 400
+}
+
+.weather-app__daily-icon {
+  font-size: 24px;
+  text-align: center
+}
+
+.weather-app__daily-precipitation {
+  font-size: 14px;
+  color: rgba(135, 206, 250, 1);
+  font-weight: 500;
+  text-align: center
+}
+
+.weather-app__precipitation-value {
+  display: inline-block
+}
+
+.weather-app__daily-temps {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 400
+}
+
+.weather-app__daily-low {
+  opacity: 0.7;
+  min-width: 32px;
+  text-align: right
+}
+
+.weather-app__daily-high {
+  min-width: 32px;
+  text-align: left
+}
+
+.weather-app__daily-bar {
+  flex: 1;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 2px;
+  overflow: hidden;
+  min-width: 40px
+}
+
+.weather-app__daily-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, rgba(255, 200, 100, 0.8) 0%, rgba(255, 150, 50, 0.9) 100%);
+  border-radius: 2px
+}
+
+.weather-app__details-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px
+}
+
+.weather-app__detail-card {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-radius: 16px;
+  padding: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  color: #FFFFFF
+}
+
+.weather-app__detail-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 12px;
+  color: rgba(255, 255, 255, 0.8)
+}
+
+.weather-app__detail-icon {
+  font-size: 14px
+}
+
+.weather-app__detail-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif
+}
+
+.weather-app__detail-value {
+  font-size: 28px;
+  font-weight: 300;
+  line-height: 1.2;
+  margin-bottom: 4px
+}
+
+.weather-app__detail-description {
+  font-size: 14px;
+  opacity: 0.8
+}
+
+@media (max-width: 375px) {
+  .weather-app__location-name {
+    font-size: 28px
+  }
+
+  .weather-app__current-temp {
+    font-size: 80px
+  }
+
+  .weather-app__hourly-item {
+    min-width: 50px
+  }
+
+  .weather-app__details-grid {
+    grid-template-columns: 1fr
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .weather-app {
+    animation: none
+  }
+
+  .weather-app__close {
+    transition: none
+  }
+}
