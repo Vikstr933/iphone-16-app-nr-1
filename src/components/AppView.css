@@ -1,0 +1,314 @@
+.app-view {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: appViewFadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards
+}
+
+@keyframes appViewFadeIn {
+  from {
+    opacity: 0
+  }
+  to {
+    opacity: 1
+  }
+}
+
+.app-view--closing {
+  animation: appViewFadeOut 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards
+}
+
+@keyframes appViewFadeOut {
+  from {
+    opacity: 1
+  }
+  to {
+    opacity: 0
+  }
+}
+
+.app-view__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  animation: overlayFadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  transition: opacity 0.2s ease
+}
+
+@keyframes overlayFadeIn {
+  from {
+    opacity: 0
+  }
+  to {
+    opacity: 1
+  }
+}
+
+.app-view--closing .app-view__overlay {
+  animation: overlayFadeOut 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards
+}
+
+@keyframes overlayFadeOut {
+  from {
+    opacity: 1
+  }
+  to {
+    opacity: 0
+  }
+}
+
+.app-view__container {
+  position: relative;
+  width: 100%;
+  max-width: 428px;
+  height: 100vh;
+  background: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: appViewSlideUp 0.5s cubic-bezier(0.32, 0.72, 0, 1) forwards;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  transform-origin: var(--start-x, 50%) var(--start-y, 50%);
+  will-change: transform;
+  transition: border-radius 0.2s ease
+}
+
+@keyframes appViewSlideUp {
+  0% {
+    transform: scale(0.1) translateY(100%);
+    opacity: 0;
+    border-radius: 30px
+  }
+  50% {
+    opacity: 1
+  }
+  100% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+    border-radius: 0
+  }
+}
+
+.app-view--closing .app-view__container {
+  animation: appViewSlideDown 0.4s cubic-bezier(0.32, 0.72, 0, 1) forwards
+}
+
+@keyframes appViewSlideDown {
+  0% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+    border-radius: 0
+  }
+  50% {
+    opacity: 1
+  }
+  100% {
+    transform: scale(0.1) translateY(100%);
+    opacity: 0;
+    border-radius: 30px
+  }
+}
+
+.app-view__status-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  z-index: 1000;
+  color: #000000;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.1)
+}
+
+.app-view__status-bar-left {
+  display: flex;
+  align-items: center;
+  flex: 1
+}
+
+.app-view__time {
+  font-size: 15px;
+  font-weight: 600
+}
+
+.app-view__notch {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 160px;
+  height: 30px;
+  background: #000000;
+  border-radius: 0 0 20px 20px;
+  z-index: 1001
+}
+
+.app-view__status-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  justify-content: flex-end
+}
+
+.app-view__signal {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 12px
+}
+
+.app-view__signal-bar {
+  width: 3px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 1px;
+  transition: background 0.2s ease
+}
+
+.app-view__signal-bar:nth-child(1) {
+  height: 4px
+}
+
+.app-view__signal-bar:nth-child(2) {
+  height: 7px
+}
+
+.app-view__signal-bar:nth-child(3) {
+  height: 10px
+}
+
+.app-view__signal-bar:nth-child(4) {
+  height: 12px
+}
+
+.app-view__signal-bar--active {
+  background: #000000
+}
+
+.app-view__wifi {
+  font-size: 14px;
+  line-height: 1
+}
+
+.app-view__battery {
+  position: relative;
+  width: 24px;
+  height: 11px;
+  border: 1.5px solid #000000;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  padding: 1.5px
+}
+
+.app-view__battery-level {
+  height: 100%;
+  background: #000000;
+  border-radius: 1.5px;
+  transition: width 0.3s ease
+}
+
+.app-view__battery-tip {
+  position: absolute;
+  right: -3px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2px;
+  height: 5px;
+  background: #000000;
+  border-radius: 0 1px 1px 0
+}
+
+.app-view__home-indicator {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 134px;
+  height: 5px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 100px;
+  z-index: 1000;
+  transition: all 0.2s ease
+}
+
+.app-view__container:active .app-view__home-indicator {
+  background: rgba(0, 0, 0, 0.5);
+  height: 6px
+}
+
+.app-view__content {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  background: #FFFFFF;
+  position: relative;
+  margin-top: 44px;
+  margin-bottom: 20px
+}
+
+.app-view__content::-webkit-scrollbar {
+  display: none
+}
+
+.app-view__content {
+  -ms-overflow-style: none;
+  scrollbar-width: none
+}
+
+@media (max-width: 428px) {
+  .app-view__container {
+    max-width: 100%
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app-view,
+  .app-view__overlay,
+  .app-view__container {
+    animation: none !important;
+    transition: none !important
+  }
+  
+  .app-view__container {
+    transform: none !important
+  }
+}
+
+@supports (-webkit-touch-callout: none) {
+  .app-view__container {
+    height: -webkit-fill-available
+  }
+}
+
+.app-view__container[style*="translateY"] {
+  transition: none
+}
+
+.app-view__container[style*="translateY"] .app-view__home-indicator {
+  background: rgba(0, 0, 0, 0.5);
+  height: 6px
+}
