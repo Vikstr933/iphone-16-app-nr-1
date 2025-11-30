@@ -10,7 +10,8 @@
   -webkit-tap-highlight-color: transparent;
   transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1);
   width: 100%;
-  padding: 8px 4px
+  padding: 8px 4px;
+  position: relative
 }
 
 .app-icon:active,
@@ -40,7 +41,8 @@
               inset 0 1px 0 rgba(255, 255, 255, 0.2);
   position: relative;
   overflow: hidden;
-  transition: box-shadow 0.2s ease, transform 0.1s ease
+  transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.1s cubic-bezier(0.4, 0, 0.2, 1)
 }
 
 .app-icon__container::before {
@@ -50,51 +52,63 @@
   left: 0;
   right: 0;
   height: 50%;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.25) 0%, transparent 100%);
   border-radius: 13.5px 13.5px 0 0;
   pointer-events: none
 }
 
+.app-icon:active .app-icon__container,
 .app-icon--pressed .app-icon__container {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3),
-              0 1px 2px rgba(0, 0, 0, 0.2),
-              inset 0 1px 0 rgba(255, 255, 255, 0.15)
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2),
+              0 1px 2px rgba(0, 0, 0, 0.1),
+              inset 0 1px 0 rgba(255, 255, 255, 0.2)
 }
 
 .app-icon__emoji {
   font-size: 36px;
   line-height: 1;
-  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
   position: relative;
-  z-index: 1
+  z-index: 1;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2))
 }
 
 .app-icon__label {
-  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
   font-size: 12px;
   font-weight: 400;
   color: #FFFFFF;
   text-align: center;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5),
                0 0 8px rgba(0, 0, 0, 0.3);
-  letter-spacing: -0.2px;
   line-height: 1.2;
-  max-width: 70px;
+  max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  transition: opacity 0.2s ease
+  padding: 0 2px;
+  letter-spacing: -0.2px
 }
 
-.app-icon--pressed .app-icon__label {
-  opacity: 0.8
+@media (max-width: 375px) {
+  .app-icon__container {
+    width: 56px;
+    height: 56px;
+    border-radius: 12.6px
+  }
+
+  .app-icon__emoji {
+    font-size: 32px
+  }
+
+  .app-icon__label {
+    font-size: 11px
+  }
 }
 
-@media (min-width: 375px) {
+@media (min-width: 429px) {
   .app-icon__container {
     width: 64px;
     height: 64px;
-    border-radius: 14px
+    border-radius: 14.4px
   }
 
   .app-icon__emoji {
@@ -102,49 +116,26 @@
   }
 
   .app-icon__label {
-    font-size: 13px;
-    max-width: 75px
-  }
-}
-
-@media (min-width: 414px) {
-  .app-icon__container {
-    width: 68px;
-    height: 68px;
-    border-radius: 15px
-  }
-
-  .app-icon__emoji {
-    font-size: 40px
-  }
-
-  .app-icon__label {
-    font-size: 13px;
-    max-width: 80px
-  }
-}
-
-@media (hover: hover) {
-  .app-icon:hover .app-icon__container {
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3),
-                0 3px 6px rgba(0, 0, 0, 0.2),
-                inset 0 1px 0 rgba(255, 255, 255, 0.25)
-  }
-
-  .app-icon:hover .app-icon__label {
-    opacity: 1
+    font-size: 13px
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .app-icon,
-  .app-icon__container,
-  .app-icon__label {
+  .app-icon__container {
     transition: none
   }
 
   .app-icon:active,
   .app-icon--pressed {
-    transform: none
+    transform: scale(0.98)
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .app-icon:hover .app-icon__container {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3),
+                0 3px 6px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.25)
   }
 }
